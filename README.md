@@ -219,7 +219,8 @@ Pour toute question ou problème :
 - Vérifiez les logs de la console navigateur
 
 ---
-depotgit https://github.com/migos276/challenge_orange_summer
+depot github https://github.com/migos276/challenge_orange_summer
+depot gitlab https://gitlab.com/tchemoumiguel-group/tchemoumiguel-project
 
 **Développé avec ❤️ pour Services Orange**
 
