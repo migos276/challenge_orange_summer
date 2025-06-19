@@ -41,8 +41,7 @@ chalenge_orange_summer/
 ├── index.html
 ├── style.css
 ├── script.js
-└── img/
-    └── orange.jpg
+
 ```
 
 ### Lancement
