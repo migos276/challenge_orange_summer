@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annuaire Employés - Services Orange</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header avec logo -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo-placeholder">
+                   <img src="img/orange.jpg" alt="Logo">
+                    </div>
+                    <div class="company-info">
+                        <p class="company-name">Services Orange</p>
+                    </div>
+                </div>
+                <div class="header-stats">
+                    <div class="stat-card">
+                        <i class="fas fa-users"></i>
+                        <div class="stat-info">
+                            <span class="stat-number" id="totalEmployees">0</span>
+                            <span class="stat-label">Employés</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="content">
+            <!-- Navigation/Actions -->
+            <nav class="navigation">
+                <button class="nav-btn active" id="addEmployeeBtn">
+                    <i class="fas fa-user-plus"></i>
+                    Ajouter un employé
+                </button>
+                <button class="nav-btn" id="viewEmployeesBtn">
+                    <i class="fas fa-list"></i>
+                    Liste des employés
+                </button>
+            </nav>
+
+            <!-- Section Formulaire -->
+            <section class="form-section" id="formSection">
+                <div class="section-header">
+                    <h2><i class="fas fa-user-plus"></i> Ajouter un employé</h2>
+                </div>
+                
+                <div class="alert alert-success" id="successMessage">
+                    <i class="fas fa-check-circle"></i>
+                    Employé ajouté avec succès !
+                </div>
+
+                <div class="form-container">
+                    <form id="employeeForm">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="lastName">
+                                    <i class="fas fa-user"></i>
+                                    Nom *
+                                </label>
+                                <input type="text" id="lastName" name="lastName" required>
+                                <div class="error-message" id="lastNameError">Le nom est requis</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="firstName">
+                                    <i class="fas fa-user"></i>
+                                    Prénom *
+                                </label>
+                                <input type="text" id="firstName" name="firstName" required>
+                                <div class="error-message" id="firstNameError">Le prénom est requis</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">
+                                    <i class="fas fa-envelope"></i>
+                                    Email *
+                                </label>
+                                <input type="email" id="email" name="email" required>
+                                <div class="error-message" id="emailError">Email invalide</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="position">
+                                    <i class="fas fa-briefcase"></i>
+                                    Poste/Fonction *
+                                </label>
+                                <input type="text" id="position" name="position" required>
+                                <div class="error-message" id="positionError">Le poste est requis</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">
+                                    <i class="fas fa-phone"></i>
+                                    Téléphone
+                                </label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="department">
+                                    <i class="fas fa-building"></i>
+                                    Département
+                                </label>
+                                <select id="department" name="department">
+                                    <option value="">Sélectionner un département</option>
+                                    <option value="IT">Informatique</option>
+                                    <option value="RH">Ressources Humaines</option>
+                                    <option value="Commercial">Commercial</option>
+                                    <option value="Marketing">Marketing</option>
+                                    <option value="Finance">Finance</option>
+                                    <option value="Operations">Opérations</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-plus"></i>
+                                Ajouter l'employé
+                            </button>
+                            <button type="button" class="btn btn-secondary" id="resetBtn">
+                                <i class="fas fa-undo"></i>
+                                Réinitialiser
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Section Liste des employés -->
+            <section class="employees-section" id="employeesSection">
+                <div class="section-header">
+                    <h2><i class="fas fa-users"></i> Liste des employés</h2>
+                    <div class="section-actions">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="searchInput" placeholder="Rechercher un employé...">
+                        </div>
+                        <select id="departmentFilter">
+                            <option value="">Tous les départements</option>
+                            <option value="IT">Informatique</option>
+                            <option value="RH">Ressources Humaines</option>
+                            <option value="Commercial">Commercial</option>
+                            <option value="Marketing">Marketing</option>
+                            <option value="Finance">Finance</option>
+                            <option value="Operations">Opérations</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="employees-grid" id="employeesList">
+                    <div class="empty-state">
+                        <div class="empty-state-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Aucun employé enregistré</h3>
+                        <p>Commencez par ajouter votre premier employé</p>
+                        <button class="btn btn-primary" onclick="showAddForm()">
+                            <i class="fas fa-plus"></i>
+                            Ajouter un employé
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Modal de confirmation -->
+    <div class="modal" id="confirmModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-exclamation-triangle"></i> Confirmation</h3>
+            </div>
+            <div class="modal-body">
+                <p>Êtes-vous sûr de vouloir supprimer cet employé ?</p>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-danger" id="confirmDelete">
+                    <i class="fas fa-trash"></i>
+                    Supprimer
+                </button>
+                <button class="btn btn-secondary" id="cancelDelete">
+                    <i class="fas fa-times"></i>
+                    Annuler
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
