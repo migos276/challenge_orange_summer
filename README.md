@@ -37,7 +37,7 @@ Une application web moderne de gestion d'annuaire employés développée en HTML
 1. Clonez ou téléchargez les fichiers du projet
 2. Assurez-vous d'avoir la structure suivante :
 ```
-annuaire-employes/
+chalenge_orange_summer/
 ├── index.html
 ├── style.css
 ├── script.js
